@@ -1,0 +1,7 @@
+C:\Users\Luuk\Documents\Visual Studio 2017\Projects\ClownCrawler\ClownCrawler\bin\Debug\ClownCrawler.exe.config
+C:\Users\Luuk\Documents\Visual Studio 2017\Projects\ClownCrawler\ClownCrawler\bin\Debug\ClownCrawler.exe
+C:\Users\Luuk\Documents\Visual Studio 2017\Projects\ClownCrawler\ClownCrawler\bin\Debug\ClownCrawler.pdb
+C:\Users\Luuk\Documents\Visual Studio 2017\Projects\ClownCrawler\ClownCrawler\obj\Debug\ClownCrawler.csprojResolveAssemblyReference.cache
+C:\Users\Luuk\Documents\Visual Studio 2017\Projects\ClownCrawler\ClownCrawler\obj\Debug\ClownCrawler.csproj.CoreCompileInputs.cache
+C:\Users\Luuk\Documents\Visual Studio 2017\Projects\ClownCrawler\ClownCrawler\obj\Debug\ClownCrawler.exe
+C:\Users\Luuk\Documents\Visual Studio 2017\Projects\ClownCrawler\ClownCrawler\obj\Debug\ClownCrawler.pdb
