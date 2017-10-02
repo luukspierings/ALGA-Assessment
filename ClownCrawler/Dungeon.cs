@@ -165,6 +165,7 @@ namespace ClownCrawler
                 for (int x = 0; x < roomMap.GetLength(0); x++)
                 {
                     roomMap[x, y].shortestRoute = false;
+                    roomMap[x, y].cheapestRoute = false;
                 }                
             }
 
@@ -178,6 +179,16 @@ namespace ClownCrawler
 
         public void useKompas()
         {
+            for (int y = 0; y < roomMap.GetLength(1); y++)
+            {
+                for (int x = 0; x < roomMap.GetLength(0); x++)
+                {
+                    roomMap[x, y].shortestRoute = false;
+                    roomMap[x, y].cheapestRoute = false;
+                }
+            }
+
+            lastMessage = "Directies naar de eindkamer: " + Dijkstra();
 
         }
 
@@ -231,6 +242,66 @@ namespace ClownCrawler
             }
 
             return 0;
+        }
+
+        public string Dijkstra()
+        {
+            Dictionary<Room, int> queue = new Dictionary<Room, int>();
+            Dictionary<Room, Room> visited = new Dictionary<Room, Room>();
+
+            queue.Add(currentRoom, 0);
+
+            while (queue.Count != 0)
+            {
+                var sortedQueue = queue.OrderBy(x => x.Value).ToDictionary(pair => pair.Key, pair => pair.Value);
+                Room pivot = sortedQueue.Keys.First();
+                int weight = sortedQueue.Values.First();
+                queue.Remove(pivot);
+
+
+                if (pivot.roomType == 'E')
+                {
+                    String path = ""; 
+                    while (currentRoom != pivot)
+                    {
+
+                        if (pivot == visited[pivot].northRoom) path = " - Noord" + path;
+                        if (pivot == visited[pivot].eastRoom) path = " - Oost" + path;
+                        if (pivot == visited[pivot].southRoom) path = " - Zuid" + path;
+                        if (pivot == visited[pivot].westRoom) path = " - West" + path;
+
+                        pivot.cheapestRoute = true;
+                        pivot = visited[pivot];
+
+                    }
+
+                    return path;
+                }
+
+                if (pivot.northRoom != null && !pivot.collapsedNorth && !visited.ContainsKey(pivot.northRoom))
+                {
+                    visited.Add(pivot.northRoom, pivot);
+                    queue.Add(pivot.northRoom, weight + pivot.northRoom.enemies);
+                }
+                if (pivot.eastRoom != null && !pivot.collapsedEast && !visited.ContainsKey(pivot.eastRoom))
+                {
+                    visited.Add(pivot.eastRoom, pivot);
+                    queue.Add(pivot.eastRoom, weight + pivot.eastRoom.enemies);
+
+                }
+                if (pivot.southRoom != null && !pivot.collapsedSouth && !visited.ContainsKey(pivot.southRoom))
+                {
+                    visited.Add(pivot.southRoom, pivot);
+                    queue.Add(pivot.southRoom, weight + pivot.southRoom.enemies);
+                }
+                if (pivot.westRoom != null && !pivot.collapsedWest && !visited.ContainsKey(pivot.westRoom))
+                {
+                    visited.Add(pivot.westRoom, pivot);
+                    queue.Add(pivot.westRoom, weight + pivot.westRoom.enemies);
+                }
+            }
+
+            return "";
         }
 
 

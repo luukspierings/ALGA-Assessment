@@ -24,6 +24,7 @@ namespace ClownCrawler
         public bool visited = false;
         public bool shortestRoute = false;
         public bool isCurrentRoom = false;
+        public bool cheapestRoute = false;
 
 
         public Room(char roomType = 'N', int enemies = 0)
@@ -31,17 +32,6 @@ namespace ClownCrawler
             this.enemies = enemies;
             this.roomType = roomType;
         }
-
-
-
-        
-
-
-
-
-
-
-
 
         public void drawRoom(int line, bool allVisible)
         {
@@ -97,6 +87,7 @@ namespace ClownCrawler
             else if (roomType == 'S') Console.ForegroundColor = ConsoleColor.Red;
             else if (roomType == 'E') Console.ForegroundColor = ConsoleColor.Green;
             else if (shortestRoute) Console.ForegroundColor = ConsoleColor.Yellow;
+            else if (cheapestRoute) Console.ForegroundColor = ConsoleColor.Magenta;
 
         }
 
