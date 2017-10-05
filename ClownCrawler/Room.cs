@@ -35,7 +35,7 @@ namespace ClownCrawler
 
         public void drawRoom(int line, bool allVisible)
         {
-            setColor();
+            setColor(false, allVisible);
 
             if (visited || allVisible)
             {
@@ -80,14 +80,14 @@ namespace ClownCrawler
         }
 
 
-        private void setColor(bool colorWhenCurrent = false)
+        private void setColor(bool colorWhenCurrent = false, bool showHintableColors = true)
         {
 
             if      (colorWhenCurrent && isCurrentRoom) Console.ForegroundColor = ConsoleColor.Blue;
             else if (roomType == 'S') Console.ForegroundColor = ConsoleColor.Red;
-            else if (roomType == 'E') Console.ForegroundColor = ConsoleColor.Green;
-            else if (shortestRoute) Console.ForegroundColor = ConsoleColor.Yellow;
-            else if (cheapestRoute) Console.ForegroundColor = ConsoleColor.Magenta;
+            else if ((showHintableColors || visited) && roomType == 'E') Console.ForegroundColor = ConsoleColor.Green;
+            else if ((showHintableColors || visited) && shortestRoute) Console.ForegroundColor = ConsoleColor.Yellow;
+            else if ((showHintableColors || visited) && cheapestRoute) Console.ForegroundColor = ConsoleColor.Magenta;
 
         }
 
