@@ -25,6 +25,7 @@ namespace ClownCrawler
         public bool shortestRoute = false;
         public bool isCurrentRoom = false;
         public bool cheapestRoute = false;
+        public bool searched = false;
 
 
         public Room(char roomType = 'N', int enemies = 0)
@@ -88,6 +89,7 @@ namespace ClownCrawler
             else if ((showHintableColors || visited) && roomType == 'E') Console.ForegroundColor = ConsoleColor.Green;
             else if ((showHintableColors || visited) && shortestRoute) Console.ForegroundColor = ConsoleColor.Yellow;
             else if ((showHintableColors || visited) && cheapestRoute) Console.ForegroundColor = ConsoleColor.Magenta;
+            else if ((showHintableColors || visited) && searched) Console.ForegroundColor = ConsoleColor.DarkYellow;
 
         }
 

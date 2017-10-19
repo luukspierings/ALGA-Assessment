@@ -280,7 +280,7 @@ namespace ClownCrawler
             while(queue.Count != 0)
             {
                 Room pivot = queue.Dequeue();
-
+                pivot.searched = true;
 
                 if(pivot.roomType == 'E')
                 {
@@ -386,6 +386,7 @@ namespace ClownCrawler
                 Room pivot = sortedQueue.Keys.First();
                 int weight = sortedQueue.Values.First();
                 queue.Remove(pivot);
+                pivot.searched = true;
 
 
                 if (pivot.roomType == 'E')
@@ -461,6 +462,7 @@ namespace ClownCrawler
                 {
                     roomMap[x, y].shortestRoute = false;
                     roomMap[x, y].cheapestRoute = false;
+                    roomMap[x, y].searched = false;
                 }
             }
         }
